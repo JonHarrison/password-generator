@@ -89,20 +89,27 @@ var upperCasedCharacters = [
 ];
 
 var debug = 0; // set positive to enable debug in console
+var passwordLength = 0; // number of characters in password
 
-var passwordLength = 0;
-
-// options
+// password options
 var includeUppercase = false;
 var includeLowercase = false;
 var includeNumeric = false;
 var includeSpecial = false;
 
+// document elements
 var cbUppercase = document.getElementById("cbUppercase");
 var cbLowercase = document.getElementById("cbLowercase");
 var cbNumeric = document.getElementById("cbNumeric");
 var cbSpecial = document.getElementById("cbSpecial");
 var srLength = document.getElementById("sliderRange");
+var sliderText = document.getElementById("sliderText");
+var sliderRange = document.getElementById("sliderRange");
+var generateBtn = document.querySelector('#generate');
+var passwordText = document.querySelector('#password');
+
+// Add event listener to generate button
+generateBtn.addEventListener('click', writePassword);
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -117,7 +124,7 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+  return arr[Math.floor(Math.random() * arr.length)]; // return a random element of the array from 0 to (array.length - 1) due to Math.floor
 }
 
 // Function to generate password with user input
@@ -125,8 +132,6 @@ function generatePassword() {
 
   var password = []; // array for password
   var all = []; // array for required password elements
-
-  // var all = [ ...specialCharacters, ...numericCharacters, ...upperCasedCharacters, ...lowerCasedCharacters ];
 
   // firstly, add one character from each of the required elements to ensure we have at least one in the final password
   if (includeSpecial) {
@@ -175,22 +180,12 @@ function generatePassword() {
   return password;
 }
 
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
 // Write password to the #password input
 function writePassword() {
   getPasswordOptions();
   var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
   passwordText.value = password;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
-
-var sliderText = document.getElementById("sliderText");
-var sliderRange = document.getElementById("sliderRange");
 
 function updateSliderTextFromSliderRange(val) {
   // update slider text with current value of slider range
