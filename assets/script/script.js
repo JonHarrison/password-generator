@@ -182,3 +182,20 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
+var sliderText = document.getElementById("sliderText");
+var sliderRange = document.getElementById("sliderRange");
+
+function updateSliderTextFromSliderRange(val) {
+  // update slider text with current value of slider range
+  sliderText.value = val;
+}
+
+function updateSliderRangeFromSliderText(val) {
+  // range limit input between 10 and 64 
+  if (val < 10)  { val = 10; sliderText.value = val; }
+  else if (val > 64) { val = 64; sliderText.value = val; }
+  // update slider range with current value of slider text
+  sliderRange.value = val;
+}
+
