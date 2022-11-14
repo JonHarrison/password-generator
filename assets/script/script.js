@@ -199,3 +199,25 @@ function updateSliderRangeFromSliderText(val) {
   sliderRange.value = val;
 }
 
+var cbListSeparator = ":";
+var cbList = cbListSeparator + "cbLowercase" + cbListSeparator + "cbUppercase" + cbListSeparator + "cbSpecial" + cbListSeparator + "cbNumeric" + cbListSeparator ; // default to all checked
+// from https://www.kodyaz.com/articles/javascript-enable-disable-button-by-values-of-checkboxes-checked.aspx
+function enableDisableGenerateBtn(cb,id) {
+
+  if (cb.checked == true) {
+    cbList = cbList + id + cbListSeparator;
+  }
+  else if (cb.checked == false) {
+    var v;
+    v = cbListSeparator + id + cbListSeparator;
+    cbList = cbList.replace(v, cbListSeparator);
+  }
+
+  if (cbList == cbListSeparator) {
+    generateBtn.disabled = true; // disable is no checkboxes are checked
+  }
+  else {
+    generateBtn.disabled = false;
+  }
+
+}
