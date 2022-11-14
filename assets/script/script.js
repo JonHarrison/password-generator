@@ -117,6 +117,56 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
 
+  var password = []; // array for password
+  var all = []; // array for required password elements
+
+  // var all = [ ...specialCharacters, ...numericCharacters, ...upperCasedCharacters, ...lowerCasedCharacters ];
+
+  // firstly, add one character from each of the required elements to ensure we have at least one in the final password
+  if (includeSpecial) {
+    password.push(getRandom(specialCharacters)); // add random character of this element to the password
+    passwordLength--; // decrement length as we need one less character now
+    all = all.concat(specialCharacters); // add this element to the all array
+  }
+  if (includeNumeric) {
+    password.push(getRandom(numericCharacters)); passwordLength--;
+    all = all.concat(numericCharacters);
+  }
+  if (includeUppercase) {
+    password.push(getRandom(upperCasedCharacters)); passwordLength--;
+    all = all.concat(upperCasedCharacters);
+  }
+  if (includeLowercase) {
+    password.push(getRandom(lowerCasedCharacters)); passwordLength--;
+    all = all.concat(lowerCasedCharacters);
+  }
+
+  if (debug > 0) console.log("Initial Password : " + password);
+
+  // shuffle all array here ?
+
+  // then pick random characters from all, the composite array of required elements, at random for the rest of the password
+  while(passwordLength--) {
+    password.push(getRandom(all));
+  }
+
+  if (debug > 0) console.log("Total Password : " + password);
+
+  // shuffle array using Durstenfeld shuffle, an optimised implementation of Fisher-Yates
+  // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+  // from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  for (let i = password.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [password[i], password[j]] = [password[j], password[i]];
+  }
+
+  if (debug > 0) console.log("Shuffled Password : " + password);
+
+  password = password.join(""); // password array without , separator so console.log as a string
+
+  if (debug > 0) console.log("Final Password : " + password);
+
+  return password;
 }
 
 // Get references to the #generate element
