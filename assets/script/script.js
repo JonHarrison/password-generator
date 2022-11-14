@@ -98,15 +98,21 @@ var includeLowercase = false;
 var includeNumeric = false;
 var includeSpecial = false;
 
+var cbUppercase = document.getElementById("cbUppercase");
+var cbLowercase = document.getElementById("cbLowercase");
+var cbNumeric = document.getElementById("cbNumeric");
+var cbSpecial = document.getElementById("cbSpecial");
+var srLength = document.getElementById("sliderRange");
+
 // Function to prompt user for password options
 function getPasswordOptions() {
   // read current state of password element checkboxes
-  includeUppercase = document.getElementById("cbUppercase").checked;
-  includeLowercase = document.getElementById("cbLowercase").checked;
-  includeNumeric = document.getElementById("cbNumeric").checked;
-  includeSpecial = document.getElementById("cbSpecial").checked;
+  includeUppercase = cbUppercase.checked;
+  includeLowercase = cbLowercase.checked;
+  includeNumeric = cbNumeric.checked;
+  includeSpecial = cbSpecial.checked;
   // read password length
-  passwordLength = document.getElementById('sliderRange').value;
+  passwordLength = srLength.value;
 }
 
 // Function for getting a random element from an array
