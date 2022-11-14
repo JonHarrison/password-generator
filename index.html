@@ -17,6 +17,35 @@
           <h2>Generate a Password</h2>
         </div>
         <div class="card-body">
+          <form class="input-group options">
+            <fieldset>
+              <legend>Select password elements</legend>
+              <div>
+                <input type="checkbox" name="lowercase" id="cbLowercase" onclick="enableDisableGenerateBtn(this,id)" checked>
+                <label for="lowercase">Lowercase</label>
+                <input type="checkbox" name="uppercase" id="cbUppercase" onclick="enableDisableGenerateBtn(this,id)" checked>
+                <label for="uppercase">Uppercase</label>
+                <input type="checkbox" name="numeric" id="cbNumeric" onclick="enableDisableGenerateBtn(this,id)" checked>
+                <label for="numeric">Numeric</label>
+                <input type="checkbox" name="special" id="cbSpecial" onclick="enableDisableGenerateBtn(this,id)" checked>
+                <label for="special">Special</label>
+              </div>
+              <div>
+                <label for="length">Length (10-64)</label>
+                <input type="range" min="10" max="64" name="length" value="10" list="tickmarks" id="sliderRange" onchange="updateSliderTextFromSliderRange(this.value);">
+                <datalist id="tickmarks">
+                  <option value="10" label="short"></option>
+                  <option value="20"></option>
+                  <option value="30"></option>
+                  <option value="40"></option>
+                  <option value="50"></option>
+                  <option value="60"></option>
+                  <option value="64" label="secure"></option>
+                </datalist>
+                <input type="text" value="10" id="sliderText" onchange="updateSliderRangeFromSliderText(this.value);">
+              </div>
+            </fieldset>
+          </form>
           <textarea
             readonly
             id="password"
