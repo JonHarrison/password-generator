@@ -88,9 +88,25 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+var debug = 0; // set positive to enable debug in console
+
+var passwordLength = 0;
+
+// options
+var includeUppercase = false;
+var includeLowercase = false;
+var includeNumeric = false;
+var includeSpecial = false;
+
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  // read current state of password element checkboxes
+  includeUppercase = document.getElementById("cbUppercase").checked;
+  includeLowercase = document.getElementById("cbLowercase").checked;
+  includeNumeric = document.getElementById("cbNumeric").checked;
+  includeSpecial = document.getElementById("cbSpecial").checked;
+  // read password length
+  passwordLength = document.getElementById('sliderRange').value;
 }
 
 // Function for getting a random element from an array
