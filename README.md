@@ -1,2 +1,1 @@
-# password-generator
-Password generator
+# Module 5 Challenge: Password Generator
