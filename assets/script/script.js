@@ -113,6 +113,19 @@ generateBtn.addEventListener('click', writePassword);
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+
+  // // prompt user for input
+  // // this is only included because it was referenced in the task requirements
+  // includeUppercase = confirm("Include upper case (Ok=YES,Cancel=NO) ?");
+  // includeLowercase = confirm("Include lower case (Ok=YES,Cancel=NO) ?");
+  // includeNumeric = confirm("Include numbers (Ok=YES,Cancel=NO) ?");
+  // includeSpecial = confirm("Include special characters (Ok=YES,Cancel=NO) ?");
+  // var len = prompt("Enter password length (10-64)");
+  // passwordLength = parseInt(len);
+  // if (passwordLength < 10) { passwordLength = 10; }
+  // else if (passwordLength > 64) { passwordLength = 64; }
+  
+  // better is to use the HTML form
   // read current state of password element checkboxes
   includeUppercase = cbUppercase.checked;
   includeLowercase = cbLowercase.checked;
