@@ -200,10 +200,13 @@ function updateSliderRangeFromSliderText(val) {
   sliderRange.value = val;
 }
 
-var cbListSeparator = ":";
-var cbList = cbListSeparator + "cbLowercase" + cbListSeparator + "cbUppercase" + cbListSeparator + "cbSpecial" + cbListSeparator + "cbNumeric" + cbListSeparator ; // default to all checked
+// Enables Generate Password button when one or more password element checkboxes is checked
+// If no checkboxes are checked, the Generate Password button will be disabled
 // from https://www.kodyaz.com/articles/javascript-enable-disable-button-by-values-of-checkboxes-checked.aspx
 function enableDisableGenerateBtn(cb,id) {
+  
+  const cbListSeparator = ":";
+  var cbList = cbListSeparator + "cbLowercase" + cbListSeparator + "cbUppercase" + cbListSeparator + "cbSpecial" + cbListSeparator + "cbNumeric" + cbListSeparator ; // default to all checked
 
   if (cb.checked == true) {
     cbList = cbList + id + cbListSeparator;
