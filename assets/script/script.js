@@ -208,15 +208,18 @@ function enableDisableGenerateBtn(cb,id) {
   const cbListSeparator = ":";
   var cbList = cbListSeparator + "cbLowercase" + cbListSeparator + "cbUppercase" + cbListSeparator + "cbSpecial" + cbListSeparator + "cbNumeric" + cbListSeparator ; // default to all checked
 
+  // if checkbox is checked add it to the list (it doesn't matter if it's already included)
   if (cb.checked == true) {
     cbList = cbList + id + cbListSeparator;
   }
+  // if checkbox is unchecked remove it from the list
   else if (cb.checked == false) {
     var v;
     v = cbListSeparator + id + cbListSeparator;
     cbList = cbList.replace(v, cbListSeparator);
   }
 
+  // if the list is empty (only contains separators) no checkboxes are checked so disable button
   if (cbList == cbListSeparator) {
     generateBtn.disabled = true; // disable is no checkboxes are checked
   }
