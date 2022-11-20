@@ -45,7 +45,7 @@ IT IS DONE when
 
 ## Website image
 
-![Website image](https://user-images.githubusercontent.com/1043077/200688107-9c1823ab-58f7-4bcb-81f2-9976401c7014.png)
+![Password Generator](https://user-images.githubusercontent.com/1043077/202894373-8adff79a-1cd3-4a48-8925-251de925f8f4.png)
 
 ## Technologies Used
 
