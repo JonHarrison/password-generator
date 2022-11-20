@@ -30,8 +30,10 @@ IT IS DONE when
 
 * Implemented the required solution in Javascript
 * Divided implementation into multiple functions
-* Enable / Disable Generate button based on selection of criteria
-* Shuffles password using Durstenfield shuffle (Fisher-Yates algorithm)
+* Enable / Disable 'Generate Password' button based on selection of one or more character type checkboxes
+* Implementation guarantees password always contains at least one character of each selected character type 
+* Shuffles password to randomise position of character types using Durstenfield shuffle (Fisher-Yates algorithm)
+* The value of the length slider and text box are linked and range limited between 10 and 64
 
 ## Challenges / Things I learnt
 
@@ -41,7 +43,8 @@ IT IS DONE when
 * Combining arrays using concat
 * Shuffling arrays using the Fisher-Yates algorithm
 * Variable scoping
-* Const
+* Use .join("") to convert array to string without the ',' separator
+* Use const character arrays
 
 ## Website image
 
