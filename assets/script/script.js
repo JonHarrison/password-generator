@@ -216,11 +216,10 @@ function updateSliderRangeFromSliderText(val) {
 // Enables Generate Password button when one or more password element checkboxes is checked
 // If no checkboxes are checked, the Generate Password button will be disabled
 // from https://www.kodyaz.com/articles/javascript-enable-disable-button-by-values-of-checkboxes-checked.aspx
+const cbListSeparator = ":";
+var cbList = cbListSeparator + "cbLowercase" + cbListSeparator + "cbUppercase" + cbListSeparator + "cbSpecial" + cbListSeparator + "cbNumeric" + cbListSeparator ; // default to all checked
 function enableDisableGenerateBtn(cb,id) {
-  
-  const cbListSeparator = ":";
-  var cbList = cbListSeparator + "cbLowercase" + cbListSeparator + "cbUppercase" + cbListSeparator + "cbSpecial" + cbListSeparator + "cbNumeric" + cbListSeparator ; // default to all checked
-
+    
   // if checkbox is checked add it to the list (it doesn't matter if it's already included)
   if (cb.checked == true) {
     cbList = cbList + id + cbListSeparator;
