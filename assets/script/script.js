@@ -2,7 +2,7 @@
 const specialCharacters = ['@','%','+','\\','/',"'",'!','#','$','^','?',':',',',')','(','}','{',']','[','~','-','_','.'];
 
 // Array of numeric characters to be included in password
-const numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const numericCharacters = ['0','1','2','3','4','5','6','7','8','9'];
 
 // Array of lowercase characters to be included in password
 const lowerCasedCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -47,7 +47,8 @@ function getPasswordOptions() {
   // if (passwordLength < 10) { passwordLength = 10; }
   // else if (passwordLength > 64) { passwordLength = 64; }
   
-  // better is to use the HTML form
+  // better is to use the HTML form though
+
   // read current state of password element checkboxes
   includeUppercase = cbUppercase.checked;
   includeLowercase = cbLowercase.checked;
@@ -59,20 +60,20 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)]; // return a random element of the array from 0 to (array.length - 1) due to Math.floor
+  return arr[Math.floor(Math.random() * arr.length)]; // return a random element from the whole array from 0 to (array.length - 1) (-1 due to Math.floor, random() will never return 1)
 }
 
 // Function to generate password with user input
 function generatePassword() {
 
   var password = []; // array for password
-  var all = []; // array for required password elements
+  var all = []; // array for required character types
 
-  // firstly, add one character from each of the required elements to ensure we have at least one in the final password
+  // firstly, add one character from each of the required character types to guarantee we have at least one in the final password
   if (includeSpecial) {
-    password.push(getRandom(specialCharacters)); // add random character of this element to the password
+    password.push(getRandom(specialCharacters)); // add random character of this character type to the password
     passwordLength--; // decrement length as we need one less character now
-    all = all.concat(specialCharacters); // add this element to the all array
+    all = all.concat(specialCharacters); // add this character type to the all array
   }
   if (includeNumeric) {
     password.push(getRandom(numericCharacters)); passwordLength--;
@@ -91,7 +92,7 @@ function generatePassword() {
 
   // shuffle all array here ?
 
-  // then pick random characters from all, the composite array of required elements, at random for the rest of the password
+  // then pick random characters from all, the composite array of required character types, at random for the rest of the password
   while(passwordLength--) {
     password.push(getRandom(all));
   }
@@ -99,6 +100,7 @@ function generatePassword() {
   if (debug > 0) console.log("Total Password : " + password);
 
   // shuffle array using Durstenfeld shuffle, an optimised implementation of Fisher-Yates
+  // this ensures that the single characters added at the start of the password don't remain in that position
   // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
   // from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   for (let i = password.length - 1; i > 0; i--) {
@@ -108,8 +110,8 @@ function generatePassword() {
 
   if (debug > 0) console.log("Shuffled Password : " + password);
 
-  password = password.join(""); // password array without , separator so console.log as a string
-
+  password = password.join(""); // convert password from array to string without ',' separator
+  
   if (debug > 0) console.log("Final Password : " + password);
 
   return password;
@@ -117,13 +119,13 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-  getPasswordOptions();
-  var password = generatePassword();
-  passwordText.value = password;
+  getPasswordOptions(); // get user options - character types and length
+  var password = generatePassword(); // generate random password
+  passwordText.value = password; // update html field
 }
 
 function updateSliderTextFromSliderRange(val) {
-  // update slider text with current value of slider range
+  // update slider text input box with current value of slider range
   sliderText.value = val;
 }
 
@@ -131,11 +133,11 @@ function updateSliderRangeFromSliderText(val) {
   // range limit input between 10 and 64 
   if (val < 10)  { val = 10; sliderText.value = val; }
   else if (val > 64) { val = 64; sliderText.value = val; }
-  // update slider range with current value of slider text
+  // update slider range with current value of slider text input box
   sliderRange.value = val;
 }
 
-// Enables Generate Password button when one or more password element checkboxes is checked
+// Enables 'Generate Password' button when one or more password element checkboxes is checked
 // If no checkboxes are checked, the Generate Password button will be disabled
 // from https://www.kodyaz.com/articles/javascript-enable-disable-button-by-values-of-checkboxes-checked.aspx
 const cbListSeparator = ":";
