@@ -30,6 +30,14 @@ header {
   color: hsl(206, 17%, 28%);
 }
 
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .card {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
